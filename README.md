@@ -1,3 +1,3 @@
-# koa-template
+# Linting and CI-template
 
-Koa boilerplate template for create-koa-application.
+Nodejs boilerplate template with linting and continous files.
