@@ -10,6 +10,7 @@ const logger = require("morgan");
 const errorHandler = require("./middleware/error.middleware");
 const applyApiMiddleware = require("./api");
 const { isDevelopment, env } = require("./config");
+require("./models"); // connect to the database
 
 const app = express();
 

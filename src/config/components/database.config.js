@@ -7,7 +7,7 @@ const joi = require("joi");
  */
 const envSchema = joi
   .object({
-    DB_USER: joi.string(),
+    DB_USER: joi.string().optional().empty(""),
     DB_HOST: joi.string(),
     DB_PASSWORD: joi.string().optional().empty(""),
     DB_DATABASE: joi.string(),
