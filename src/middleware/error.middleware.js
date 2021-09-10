@@ -5,5 +5,5 @@ module.exports = async function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.json({ message: err.message, error: res.locals.error });
+  res.json({ message: err.message, error: err });
 };

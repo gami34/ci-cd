@@ -10,6 +10,8 @@ const envSchema = joi
     NODE_ENV: joi.string().allow("development", "production", "test"),
     PORT: joi.string(),
     API_VERSION: joi.string(),
+    SECRET: joi.string(),
+    TOKEN_EXPIRATION_TIME: joi.number(),
   })
   .unknown()
   .required();
@@ -29,6 +31,8 @@ const config = {
   server: {
     port: envVars.PORT || 3000,
     apiVersion: envVars.API_VERSION || "v1",
+    secret: envVars.SECRET,
+    tokenExpirationTime: envVars.TOKEN_EXPIRATION_TIME,
   },
 };
 

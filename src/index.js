@@ -6,11 +6,14 @@ const compression = require("compression");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const session = require("express-session");
 
 const errorHandler = require("./middleware/error.middleware");
 const applyApiMiddleware = require("./api");
 const { isDevelopment, env } = require("./config");
-require("./models"); // connect to the database
+const { secret } = require("./config").server;
+const applyAuthMiddleware = require("./authConfig");
+const mongodbConnector = require("./connectors/mongodb.connector");
 
 const app = express();
 
@@ -25,6 +28,21 @@ app.set("env", env);
 if (isDevelopment) {
   app.use(logger("dev"));
 }
+
+// connect to mongodb
+mongodbConnector();
+
+// encryt all session from the server
+app.use(
+  session({
+    secret: secret,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 }, // Max age of the cookie for everyse session
+  }),
+);
+// handle all system authentication methods
+applyAuthMiddleware(app);
 
 /**
  * Pass to our server instance middlewares
