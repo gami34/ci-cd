@@ -13,7 +13,8 @@ const applyApiMiddleware = require("./api");
 const { isDevelopment, env } = require("./config");
 const { secret } = require("./config").server;
 const applyAuthMiddleware = require("./authConfig");
-const mongodbConnector = require("./connectors/mongodb.connector");
+// only enable if usig mongo db service
+require("./connectors/db.connector");
 
 const app = express();
 
@@ -30,7 +31,7 @@ if (isDevelopment) {
 }
 
 // connect to mongodb
-mongodbConnector();
+// mongodbConnector();
 
 // encryt all session from the server
 app.use(
