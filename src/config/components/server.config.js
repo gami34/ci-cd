@@ -11,7 +11,7 @@ const envSchema = joi
     PORT: joi.string(),
     API_VERSION: joi.string(),
     SECRET: joi.string(),
-    TOKEN_EXPIRATION_TIME: joi.number(),
+    TOKEN_EXPIRATION_TIME: joi.string(),
   })
   .unknown()
   .required();
